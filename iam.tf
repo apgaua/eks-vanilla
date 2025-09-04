@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "nodes" {
 
 resource "aws_iam_role" "eks_nodes_role" {
   name               = format("%s-nodes-role", var.project_name)
-  assume_role_policy = data.aws_iam_policy_document.cluster.json
+  assume_role_policy = data.aws_iam_policy_document.nodes.json
   tags = {
     Name = "${var.project_name}-eks-nodes"
   }
