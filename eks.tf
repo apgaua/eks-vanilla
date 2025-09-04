@@ -24,6 +24,10 @@ resource "aws_eks_cluster" "main" {
 
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
+  zonal_shift_config {
+    enabled = false
+  }
+
   depends_on = [
     aws_iam_role_policy_attachment.eks_cluster_policy,
     aws_iam_role_policy_attachment.eks_service_policy,
