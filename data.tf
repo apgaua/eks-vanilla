@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "vpc" {
-  name = var.ssm_vpc
+  name = var.ssm_vpc_id
 }
 
 data "aws_ssm_parameter" "public_subnets" {
