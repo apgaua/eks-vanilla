@@ -4,8 +4,7 @@ resource "aws_eks_cluster" "main" {
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   vpc_config {
-    subnet_ids = data.aws_ssm_parameter.private_subnets[*].value
-
+    subnet_ids              = data.aws_ssm_parameter.private_subnets[*].value
     endpoint_private_access = true
     endpoint_public_access  = true
   }
@@ -25,14 +24,18 @@ resource "aws_eks_cluster" "main" {
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   zonal_shift_config {
-    enabled = false
+    enabled = true
+  }
+
+  upgrade_policy {
+    support_type = "STANDARD"
   }
 
   depends_on = [
     aws_iam_role_policy_attachment.eks_cluster_policy,
     aws_iam_role_policy_attachment.eks_service_policy,
     aws_iam_role_policy_attachment.ecr,
-    aws_iam_role_policy_attachment.ssm,
+    aws_iam_role_policy_attachment.ssm
   ]
 
   tags = merge({ "kubernetes.io/cluster/${var.project_name}" = "shared" }, var.default_tags)

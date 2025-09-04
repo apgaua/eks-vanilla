@@ -3,12 +3,41 @@ resource "helm_release" "metrics_server" {
   repository = "https://kubernetes-sigs.github.io/metrics-server/"
   chart      = "metrics-server"
   namespace  = "kube-system"
-  version    = "5.12.1"
+  wait       = false
+  version    = "3.12.2"
 
-  set {
+  set = [{
     name  = "apiService.create"
     value = "true"
-  }
+  }]
 
-  depends_on = [aws_eks_addon.cni, aws_eks_addon.coredns, aws_eks_addon.kubeproxy, aws_eks_access_entry.nodes]
+  depends_on = [aws_eks_cluster.main, aws_eks_node_group.main]
+}
+
+resource "helm_release" "kube_state_metrics" {
+  name             = "kube-state-metrics"
+  repository       = "https://prometheus-community.github.io/helm-charts"
+  chart            = "kube-state-metrics"
+  namespace        = "kube-system"
+  create_namespace = true
+
+  set = [
+    {
+      name  = "apiService.create"
+      value = "true"
+    },
+    {
+      name  = "metricLabelsAllowlist[0]"
+      value = "nodes=[*]"
+    },
+    {
+      name  = "metricAnnotationsAllowList[0]"
+      value = "nodes=[*]"
+    }
+  ]
+
+  depends_on = [
+    aws_eks_cluster.main,
+    aws_eks_node_group.main
+  ]
 }

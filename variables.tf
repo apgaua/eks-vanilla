@@ -35,17 +35,17 @@ variable "node_instance_type" {
 
 variable "addon_cni_version" {
   type    = string
-  default = "v1.20.1-eksbuild.3"
+  default = "v1.19.5-eksbuild.1"
 }
 
 variable "addon_coredns_version" {
   type    = string
-  default = "v1.12.3-eksbuild.1"
+  default = "v1.12.1-eksbuild.2"
 }
 
 variable "addon_kubeproxy_version" {
   type    = string
-  default = "v1.33.3-eksbuild.6"
+  default = "v1.33.0-eksbuild.2"
 }
 
 variable "default_tags" {
