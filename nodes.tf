@@ -22,7 +22,10 @@ resource "aws_eks_node_group" "main" {
   }
   tags = merge({ "kubernetes.io/cluster/${var.project_name}" = "shared" }, var.default_tags)
 
-  depends_on = [kubernetes_config_map.aws_auth]
+  depends_on = [
+    #kubernetes_config_map.aws_auth
+    aws_eks_access_entry.nodes
+    ]
 
   timeouts {
     create = "30m"

@@ -33,6 +33,21 @@ variable "node_instance_type" {
   type = list(string)
 }
 
+variable "addon_cni_version" {
+  type    = string
+  default = "v1.20.1-eksbuild.3"
+}
+
+variable "addon_coredns_version" {
+  type    = string
+  default = "v1.12.3-eksbuild.1"
+}
+
+variable "addon_kubeproxy_version" {
+  type    = string
+  default = "v1.33.3-eksbuild.6"
+}
+
 variable "default_tags" {
   type        = map(string)
   description = "Default tags to be set in resources"
