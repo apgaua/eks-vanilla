@@ -40,12 +40,12 @@ variable "addon_cni_version" {
 
 variable "addon_coredns_version" {
   type    = string
-  default = "v1.12.1-eksbuild.2"
+  default = "v1.11.4-eksbuild.2"
 }
 
 variable "addon_kubeproxy_version" {
   type    = string
-  default = "v1.33.0-eksbuild.2"
+  default = "v1.32.0-eksbuild.2"
 }
 
 variable "default_tags" {

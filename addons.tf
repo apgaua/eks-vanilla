@@ -20,7 +20,7 @@ resource "aws_eks_addon" "coredns" {
 
 resource "aws_eks_addon" "kubeproxy" {
   cluster_name                = aws_eks_cluster.main.name
-  addon_name                  = "kubeproxy"
+  addon_name                  = "kube-proxy"
   addon_version               = var.addon_kubeproxy_version
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
