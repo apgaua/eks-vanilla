@@ -14,6 +14,5 @@ resource "kubernetes_config_map" "aws_auth" {
     - system:node-proxier
 YAML
   }
-
   depends_on = [aws_eks_cluster.main]
 }

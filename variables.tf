@@ -11,6 +11,15 @@ variable "kubernetes_version" {
   default = "1.27"
 }
 
+variable "zonal_shift" {
+  type    = bool
+  default = false
+}
+
+variable "upgrade_policy_support_type" {
+  type    = string
+  default = "STANDARD"
+}
 variable "default_tags" {
   type        = map(string)
   description = "Default tags to be set in resources"
