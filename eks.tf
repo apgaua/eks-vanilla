@@ -31,5 +31,5 @@ enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager
     aws_iam_role_policy_attachment.ssm,
   ]
 
-  tags = merge({kubernetes.io/cluster/var.project_name="shared"}, var.default_tags)
+tags = merge({"kubernetes.io/cluster/${var.project_name}" = "shared"}, var.default_tags)
 }
