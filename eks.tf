@@ -17,12 +17,12 @@ resource "aws_eks_cluster" "main" {
     }
   }
 
-access_config {
-  authentication_mode = "API_AND_CONFIG_MAP"
-  bootstrap_cluster_creator_admin_permissions = true
-}
+  access_config {
+    authentication_mode                         = "API_AND_CONFIG_MAP"
+    bootstrap_cluster_creator_admin_permissions = true
+  }
 
-enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   depends_on = [
     aws_iam_role_policy_attachment.eks_cluster_policy,
@@ -31,5 +31,5 @@ enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager
     aws_iam_role_policy_attachment.ssm,
   ]
 
-tags = merge({"kubernetes.io/cluster/${var.project_name}" = "shared"}, var.default_tags)
+  tags = merge({ "kubernetes.io/cluster/${var.project_name}" = "shared" }, var.default_tags)
 }

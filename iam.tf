@@ -4,7 +4,7 @@
 
 
 data "aws_iam_policy_document" "cluster" {
-    version = "2012-10-17"
+  version = "2012-10-17"
   statement {
     actions = ["sts:AssumeRole"]
 
@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "cluster" {
 
 resource "aws_iam_role" "eks_cluster_role" {
   name               = format("%s-cluster-role", var.project_name)
-    assume_role_policy = data.aws_iam_policy_document.cluster.json
+  assume_role_policy = data.aws_iam_policy_document.cluster.json
   tags = {
     Name = "${var.project_name}-eks-cluster"
   }
@@ -38,7 +38,7 @@ resource "aws_iam_role_policy_attachment" "eks_service_policy" {
 ################################################################################
 
 data "aws_iam_policy_document" "nodes" {
-    version = "2012-10-17"
+  version = "2012-10-17"
   statement {
     actions = ["sts:AssumeRole"]
 
@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "nodes" {
 
 resource "aws_iam_role" "eks_nodes_role" {
   name               = format("%s-nodes-role", var.project_name)
-    assume_role_policy = data.aws_iam_policy_document.cluster.json
+  assume_role_policy = data.aws_iam_policy_document.cluster.json
   tags = {
     Name = "${var.project_name}-eks-nodes"
   }
