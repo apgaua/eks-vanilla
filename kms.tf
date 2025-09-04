@@ -1,5 +1,5 @@
 resource "aws_kms_key" "main" {
-  description             = var.project_name
+  description = var.project_name
 }
 
 resource "aws_kms_alias" "main" {
