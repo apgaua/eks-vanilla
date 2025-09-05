@@ -5,6 +5,8 @@ module "eks_cluster" {
   region       = var.region
   # CLUSTER SETTINGS
   cluster = var.cluster
+  # NODES SETTINGS
+  nodegroup = var.nodegroup
   # HELM CHARTS
   helm_charts = var.helm_charts
   # NETWORKING SETTINGS
