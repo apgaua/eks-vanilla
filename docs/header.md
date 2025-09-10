@@ -17,4 +17,4 @@
 | Project | Priority | URL | Description |
 |---------|----------|-----|-------------|
 | EKS Networking | 1 | https://github.com/apgaua/eks-networking | VPC structure to deploy EKS |
-| This one | 2 | https://github.com/apgaua/eks-vanilla | EBasic KS with node groups |
+| This one | 2 | https://github.com/apgaua/eks-vanilla | Basic EKS with node groups |
