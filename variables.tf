@@ -12,6 +12,7 @@ variable "region" {
 
 variable "cluster" {
   type = list(object({
+    cluster_name       = string
     kubernetes_version = string
     zonal_shift        = bool
     access_config = optional(object({
@@ -33,8 +34,9 @@ variable "cluster" {
 
 variable "nodegroup" {
   type = list(object({
-    node_group_name = string
-    instance_types  = list(string)
+    name_suffix    = string
+    instance_types = list(string)
+    ami_type       = optional(string)
     auto_scale_options = list(object({
       min     = number
       max     = number

@@ -30,12 +30,12 @@ cluster = [
       {
         name    = "kube-proxy"
         version = "v1.33.0-eksbuild.2" # https://docs.aws.amazon.com/eks/latest/userguide/managing-kube-proxy.html
-       },
+      },
       {
-        name    = "node-monitoring"
+        name    = "node-monitoring-agent"
         version = "v1.4.0-eksbuild.2" # https://docs.aws.amazon.com/eks/latest/userguide/workloads-add-ons-available-eks.html#add-ons-eks-node-monitoring-agent
       }
-  ]}
+  ] }
 ]
 
 ################################################################################
@@ -44,7 +44,7 @@ cluster = [
 
 nodegroup = [
   {
-    node_group_name    = "SPOT-Instances"
+    name_suffix        = "-SPOT"
     instance_types     = ["t3.small", "t3.medium"] # "t3.large", "m5.xlarge", "m5.2xlarge"
     capacity_type      = "SPOT"
     auto_scale_options = [{ min = 2, max = 3, desired = 2 }]
