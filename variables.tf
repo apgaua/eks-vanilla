@@ -12,6 +12,7 @@ variable "region" {
 
 variable "cluster" {
   type = list(object({
+    cluster_name       = string
     kubernetes_version = string
     zonal_shift        = bool
     access_config = optional(object({
@@ -20,18 +21,34 @@ variable "cluster" {
     }))
     upgrade_policy_support_type = string
     enabled_cluster_log_types   = list(string)
+    addons = optional(list(object({
+      name    = string
+      version = string
+    })), [])
+  }))
+}
+
+################################################################################
+############################## NODES VARIABLES #################################
+################################################################################
+
+variable "nodegroup" {
+  type = list(object({
+    name_suffix    = string
+    instance_types = list(string)
+    ami_type       = optional(string)
     auto_scale_options = list(object({
       min     = number
       max     = number
       desired = number
     }))
-    node_instance_type      = list(string)
-    addons = optional(list(object({
-      name  = string
-      version = string
-    })), [])
+    labels = optional(map(string), {})
   }))
 }
+
+################################################################################
+#################################### HELM CHARTS ###############################
+################################################################################
 
 variable "helm_charts" {
   type = list(object({
